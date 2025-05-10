@@ -1,0 +1,66 @@
+<mat-card class="cardWithShadow rounded-card">
+    <mat-card-content>
+  
+      <!-- Encabezado -->
+      <div class="header">
+        <div>
+          <mat-card-title>Usuarios</mat-card-title>
+          <mat-card-subtitle>Listado</mat-card-subtitle>
+        </div>
+        <button mat-flat-button (click)="goToCreateUserForm()" color="primary">Crear nuevo usuario</button>
+      </div>
+  
+      <hr />
+  
+      <!-- Tabla -->
+      <div class="table-responsive">
+        <table class="user-table">
+          <thead>
+            <tr>
+              <th hidden>ID</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Estado</th>
+              <th class="actions-header">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of userList">
+              <td hidden>{{ user.id }}</td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                @if (user.state === 'Active') {
+                  <span class="badge badge-success">{{ user.state }}</span>
+                }
+                @if (user.state === 'Inactive') {
+                  <span class="badge badge-warning">{{ user.state }}</span>
+                }
+              </td>
+              <td class="actions-cell">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="goToUserForm(user.id)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Editar</span>
+                  </button>
+                  <button mat-menu-item (click)="changeUserStatus(user)">
+                    <mat-icon>autorenew</mat-icon>
+                    <span>{{ user.state === 'Active' ? 'Desactivar' : 'Activar' }}</span>
+                  </button>
+                  <button *ngIf="user.id" mat-menu-item (click)="deleteUser(user.id)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Eliminar</span>
+                  </button>                  
+                </mat-menu>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+    </mat-card-content>
+  </mat-card>
+  

@@ -16,7 +16,10 @@ export class Airportservice {
 
   addAirportService(airportservice: airportService): Observable<any>{
     const endpoint = `${this.api_url}/add`;
-    return this.http.post(endpoint, airportservice);
+    const headers = {
+      'Authorization': `Bearer ${localStorage.getItem('AuthToken')}`
+    }
+    return this.http.post(endpoint, airportservice, {headers});
   }
 
   getAirportService(): Observable<airportService[]>{

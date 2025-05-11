@@ -47,7 +47,9 @@ export class AirportServiceListComponent {
       this.router.navigate(['airportservices/airportservice', id])
     }
   }
-
+  goToSCreateForm() {
+    this.router.navigate(['airportservices/addService'])
+  }
   getServices() {
     this.aService.getAirportService().subscribe({
       next: (res) => {

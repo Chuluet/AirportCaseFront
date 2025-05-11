@@ -1,0 +1,73 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <div class="header-container">
+      <mat-card-title class="m-b-0">Edit passenger</mat-card-title>
+      <button mat-flat-button color="primary" (click)="savePassengerInfo()">Save</button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content class="b-t-1">
+    <form [formGroup]="form">
+      <div class="row">
+        <!-- Name Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Name</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="passenger name" formControlName="name" />
+          </mat-form-field>
+        </div>
+
+        <!-- PassportId Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">PassportId</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="PassportId" formControlName="passportId" />
+          </mat-form-field>
+        </div>
+        <!-- Email Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Email</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Email" formControlName="email" />
+          </mat-form-field>
+        </div>
+        <!-- Phone Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Phone</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Phone" formControlName="phone" />
+          </mat-form-field>
+        </div>
+        <!-- Seat Preference Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Seat Preference</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <mat-select formControlName="seatPreference">
+              <mat-option value="Window">Window</mat-option>
+              <mat-option value="Aisle">Aisle</mat-option>
+              <mat-option value="Extra Legroom">Extra Legroom </mat-option>
+              <mat-option value="No Preference">No Preference</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <!-- Meal Preference Field -->
+       <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Meal Preference</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Meal Preference" formControlName="mealPreference" />
+          </mat-form-field>
+        </div>
+        <!-- Status Field -->
+        <div class="col-lg-6 m-b-16" *ngIf="editMode">
+          <mat-label class="f-w-600 m-b-8 d-block">Status</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <mat-select formControlName="isActive">
+              <mat-option value=true>Active</mat-option>
+              <mat-option value=false>Inactive</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

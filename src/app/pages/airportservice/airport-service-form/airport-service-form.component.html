@@ -1,0 +1,57 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <div class="header-container">
+      <mat-card-title class="m-b-0">Edit Airport Service</mat-card-title>
+      <button mat-flat-button color="primary" (click)="saveServiceInfo()">Save</button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content class="b-t-1">
+    <form [formGroup]="form">
+      <div class="row">
+        <!-- Name Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Name</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Service name" formControlName="name" />
+          </mat-form-field>
+        </div>
+
+        <!-- Type Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Type</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Service type" formControlName="type" />
+          </mat-form-field>
+        </div>
+
+        <!-- Description Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Description</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Service description" formControlName="description" />
+          </mat-form-field>
+        </div>
+
+        <!-- Location Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Location</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Service location" formControlName="location" />
+          </mat-form-field>
+        </div>
+
+        <!-- Status Field -->
+        <div class="col-lg-6 m-b-16" *ngIf="editMode">
+          <mat-label class="f-w-600 m-b-8 d-block">Status</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <mat-select formControlName="isActive">
+              <mat-option value=true>Active</mat-option>
+              <mat-option value=false>Inactive</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

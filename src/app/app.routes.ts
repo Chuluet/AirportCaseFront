@@ -22,7 +22,11 @@ export const routes: Routes = [
         loadChildren: ()=>
           import('./pages/users/user.routes').then((m) => m.UserRoutes)
       },
-    
+      {
+        path:'airportservices',
+        loadChildren: ()=>
+          import('./pages/airportservice/airportservice.routes').then((m) => m.AirportserviceRoutes)
+      },
     ],
   },
   {

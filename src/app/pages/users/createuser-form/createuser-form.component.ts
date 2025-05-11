@@ -36,7 +36,7 @@ export class CreateUserFormComponent implements OnInit {
         this.userId = id;
         this.editMode = true;
         this.getUserById(id);
-        this.form.get('password')?.clearValidators(); // No pedimos contraseña en edición
+        this.form.get('password')?.clearValidators(); // Password not required in edit mode
         this.form.get('password')?.updateValueAndValidity();
       }
     });
@@ -61,7 +61,7 @@ export class CreateUserFormComponent implements OnInit {
         });
       },
       error: () => {
-        console.error("Error al obtener el usuario");
+        console.error("Error retrieving user");
       }
     });
   }
@@ -69,7 +69,7 @@ export class CreateUserFormComponent implements OnInit {
   guardarUsuarioInfo(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      alert("Por favor, completa todos los campos requeridos.");
+      alert("Please complete all required fields.");
       return;
     }
 
@@ -78,27 +78,27 @@ export class CreateUserFormComponent implements OnInit {
     if (this.editMode && this.userId) {
       this.userService.udpateUser(this.userId, userData).subscribe({
         next: () => {
-          this.alertService.SuccesAlert("Éxito", "Usuario actualizado correctamente").then(result => {
+          this.alertService.SuccesAlert("Success", "User successfully updated").then(result => {
             if (result.isConfirmed) {
               this.router.navigate(["/users"]);
             }
           });
         },
         error: () => {
-          console.error("Error al actualizar usuario");
+          console.error("Error updating user");
         }
       });
     } else {
       this.userService.addUser(userData).subscribe({
         next: () => {
-          this.alertService.SuccesAlert("Éxito", "Usuario creado correctamente").then(result => {
+          this.alertService.SuccesAlert("Success", "User successfully created").then(result => {
             if (result.isConfirmed) {
               this.router.navigate(["/users"]);
             }
           });
         },
         error: () => {
-          console.error("Error al crear usuario");
+          console.error("Error creating user");
         }
       });
     }

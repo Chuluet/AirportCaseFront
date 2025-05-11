@@ -1,2 +1,3 @@
-# Flexy-Angular-pro
-Flexy Angular Admin Dashboard
+npm install
+npm install sweetalert2
+ng serve

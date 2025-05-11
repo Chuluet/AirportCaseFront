@@ -1,19 +1,19 @@
 <mat-card class="cardWithShadow theme-card">
   <mat-card-header>
     <div class="header-container">
-      <mat-card-title class="m-b-0">Crear usuario</mat-card-title>
-      <button mat-flat-button color="primary" (click)="guardarUsuarioInfo()">Guardar</button>
+      <mat-card-title class="m-b-0">Create User</mat-card-title>
+      <button mat-flat-button color="primary" (click)="guardarUsuarioInfo()">Save</button>
     </div>
   </mat-card-header>
 
   <mat-card-content class="b-t-1">
     <form [formGroup]="form">
       <div class="row">
-        <!-- Nombre -->
+        <!-- Name -->
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Nombre</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Name</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="name" placeholder="Nombre del usuario" />
+            <input matInput formControlName="name" placeholder="User's name" />
           </mat-form-field>
         </div>
 
@@ -21,13 +21,13 @@
         <div class="col-lg-6 m-b-16">
           <mat-label class="f-w-600 m-b-8 d-block">Email</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="email" placeholder="Correo electrónico" />
+            <input matInput formControlName="email" placeholder="Email address" />
           </mat-form-field>
         </div>
 
-        <!-- Contraseña -->
+        <!-- Password -->
         <div class="col-lg-6 m-b-16" *ngIf="!editMode">
-          <mat-label class="f-w-600 m-b-8 d-block">Contraseña</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Password</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
             <input matInput type="password" formControlName="password" placeholder="Password" />
           </mat-form-field>

@@ -27,7 +27,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Airport Service',
     iconName: 'building-skyscraper',  // Icono específico de aeropuerto
-    route: '/pedidos/listado',
+    route: '/airportservices',
   },
   {
     displayName: 'Flight',

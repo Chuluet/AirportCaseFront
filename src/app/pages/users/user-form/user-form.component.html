@@ -1,33 +1,33 @@
 <mat-card class="cardWithShadow theme-card">
   <mat-card-header>
     <div class="header-container">
-      <mat-card-title class="m-b-0">Modificar usuario</mat-card-title>
-      <button mat-flat-button color="primary" (click)="guardarUsuarioInfo()">Guardar</button>
+      <mat-card-title class="m-b-0">Edit User</mat-card-title>
+      <button mat-flat-button color="primary" (click)="guardarUsuarioInfo()">Save</button>
     </div>
   </mat-card-header>
 
   <mat-card-content class="b-t-1">
     <form [formGroup]="form">
       <div class="row">
-        <!-- Campo Nombre -->
+        <!-- Name Field -->
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Nombre</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Name</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput placeholder="Nombre del usuario" formControlName="name" />
+            <input matInput placeholder="User's name" formControlName="name" />
           </mat-form-field>
         </div>
 
-        <!-- Campo Email -->
+        <!-- Email Field -->
         <div class="col-lg-6 m-b-16">
           <mat-label class="f-w-600 m-b-8 d-block">Email</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput placeholder="Correo electrónico" formControlName="email" />
+            <input matInput placeholder="Email address" formControlName="email" />
           </mat-form-field>
         </div>
 
-        <!-- Campo Estado (solo visible en edición) -->
+        <!-- Status Field (visible only in edit mode) -->
         <div class="col-lg-6 m-b-16" *ngIf="editMode">
-          <mat-label class="f-w-600 m-b-8 d-block">Estado</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Status</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
             <mat-select formControlName="state">
               <mat-option value="Active">Active</mat-option>

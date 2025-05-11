@@ -20,65 +20,69 @@ export class UserFormComponent {
   
   constructor(
     private route: ActivatedRoute,
-    private router:Router, 
+    private router: Router, 
     private userService: UserService, 
     private fb: FormBuilder,
     private alertService: AlertService
-  ){}
+  ) {}
 
-  initForm():void{
+  initForm(): void {
     this.form = this.fb.group({
-      name:['', Validators.required],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       state: ['Active']
-    })
+    });
   }
-  ngOnInit(): void{
+
+  ngOnInit(): void {
     this.initForm();
 
-    this.route.paramMap.subscribe(params=>{
+    this.route.paramMap.subscribe(params => {
       const id = params.get('id');
-      if(id){
+      if (id) {
         this.userId = id;
         this.editMode = true;
         this.getuserById(id);
       }
-    })
+    });
   }
 
-  getuserById(id: string){
+  getuserById(id: string) {
     this.userService.getUserById(id).subscribe({
-      next:(user:User)=>{
+      next: (user: User) => {
         this.form.patchValue({
           name: user.name,
           email: user.email,
           state: user.state
-        })
-      }, error:()=>{
-        console.log("Algo pasó mery wey");
+        });
+      },
+      error: () => {
+        console.log("Something went wrong");
       }
-    })
+    });
   }
-  guardarUsuarioInfo(){
-    if(this.form.invalid){
-      this.form.markAllAsTouched()
-      alert("Hubo un error al mapear los datos")
+
+  guardarUsuarioInfo() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      alert("There was an error mapping the data");
       return;
     }
 
     const userData: User = this.form.value;
 
-    if(this.editMode && this.userId){
+    if (this.editMode && this.userId) {
       this.userService.udpateUser(this.userId, userData).subscribe({
-        next:(user:User)=>{
-          this.alertService.SuccesAlert("Excelente", "El usuario ha sido modificado correctamente").then((result) =>{
-            if(result.isConfirmed)
-              this.router.navigate(["/users"])
+        next: (user: User) => {
+          this.alertService.SuccesAlert("Success", "User has been updated successfully").then((result) => {
+            if (result.isConfirmed)
+              this.router.navigate(["/users"]);
           });
-        }, error:()=>{
-          console.log("Algo pasó mery wey");
+        },
+        error: () => {
+          console.log("Something went wrong");
         }
-      })
+      });
     }
   }
 }

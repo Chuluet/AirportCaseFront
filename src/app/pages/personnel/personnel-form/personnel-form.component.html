@@ -1,0 +1,70 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <div class="header-container">
+      <mat-card-title class="m-b-0">Edit Personnel</mat-card-title>
+      <button mat-flat-button color="primary" (click)="savePersonnelInfo()">Save</button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content class="b-t-1">
+    <form [formGroup]="form">
+      <div class="row">
+        <!-- id Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Id</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Person Id" formControlName="personId" />
+          </mat-form-field>
+        </div>
+        <!-- Name Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Name</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Personnel name" formControlName="name" />
+          </mat-form-field>
+        </div>
+
+        <!-- role Field -->
+        <div class="col-lg-6 m-b-16" *ngIf="editMode">
+          <mat-label class="f-w-600 m-b-8 d-block">Role</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <mat-select formControlName="role">
+              <mat-option value="Pilot">Pilot</mat-option>
+              <mat-option value="Cabin Crew">Cabin Crew</mat-option>
+              <mat-option value="Security">Security</mat-option>
+              <mat-option value="Ground Staff">Ground Staff</mat-option>
+              <mat-option value="Customer Service">Customer Service</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Email Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Email</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Personnel Email" formControlName="email" />
+          </mat-form-field>
+        </div>
+
+        <!-- phone Field -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Phone</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Phone" formControlName="phone" />
+          </mat-form-field>
+        </div>
+
+        <!-- Status Field -->
+        <div class="col-lg-6 m-b-16" *ngIf="editMode">
+          <mat-label class="f-w-600 m-b-8 d-block">Status</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <mat-select formControlName="isActive">
+              <mat-option value=true>Active</mat-option>
+              <mat-option value=false>Inactive</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

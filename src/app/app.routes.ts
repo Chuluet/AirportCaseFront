@@ -27,6 +27,11 @@ export const routes: Routes = [
         loadChildren: ()=>
           import('./pages/airportservice/airportservice.routes').then((m) => m.AirportserviceRoutes)
       },
+       {
+        path:'personnel',
+        loadChildren: ()=>
+          import('./pages/personnel/personnel.routes').then((m) => m.personnelRoutes)
+      },
     ],
   },
   {

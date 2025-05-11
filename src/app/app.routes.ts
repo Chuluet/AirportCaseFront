@@ -32,6 +32,11 @@ export const routes: Routes = [
         loadChildren: ()=>
           import('./pages/personnel/personnel.routes').then((m) => m.personnelRoutes)
       },
+      {
+        path:'passengers',
+        loadChildren: ()=>
+          import('./pages/passenger/passenger.routes').then((m) => m.passengerRoutes)
+      },
     ],
   },
   {

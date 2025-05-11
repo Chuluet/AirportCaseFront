@@ -17,12 +17,12 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Personnel',
     iconName: 'users-group',       // Icono para grupos de usuarios
-    route: '/pedidos/listado',
+    route: '/personnel',
   },
   {
     displayName: 'Passenger',
     iconName: 'user',              // Icono genérico de usuario
-    route: '/pedidos/listado',
+    route: '/passengers',
   },
   {
     displayName: 'Airport Service',

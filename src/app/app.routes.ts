@@ -23,6 +23,13 @@ export const routes: Routes = [
           import('./pages/users/user.routes').then((m) => m.UserRoutes)
       },
       {
+
+        path: 'baggages',
+        loadChildren: () =>
+          import('./pages/baggages/baggage.routes').then((m) => m.BaggageRoutes),
+      },
+    
+
         path:'airportservices',
         loadChildren: ()=>
           import('./pages/airportservice/airportservice.routes').then((m) => m.AirportserviceRoutes)
@@ -37,6 +44,7 @@ export const routes: Routes = [
         loadChildren: ()=>
           import('./pages/passenger/passenger.routes').then((m) => m.passengerRoutes)
       },
+
     ],
   },
   {

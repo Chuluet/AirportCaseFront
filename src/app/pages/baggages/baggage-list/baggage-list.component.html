@@ -1,0 +1,81 @@
+<mat-card class="cardWithShadow rounded-card">
+  <mat-card-content>
+
+    <!-- Encabezado -->
+    <div class="header">
+      <div>
+        <mat-card-title>Equipajes</mat-card-title>
+        <mat-card-subtitle>Listado</mat-card-subtitle>
+      </div>
+      <button mat-flat-button (click)="goToCreateBaggageForm()" color="primary">
+        Registrar nuevo equipaje
+      </button>
+    </div>
+
+    <hr />
+
+    <!-- Tabla -->
+    <div class="table-responsive">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th hidden>ID</th>
+            <th>Pasajero</th>
+            <th>Número de etiqueta</th>
+            <th>Peso (kg)</th>
+            <th>Estado</th>
+            <th>Incidentes</th>
+            <th class="actions-header">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let baggage of baggageList">
+            <td hidden>{{ baggage.id }}</td>
+            <td>{{ baggage.passengerFk }}</td>
+            <td>{{ baggage.tagNumber }}</td>
+            <td>{{ baggage.weight }}</td>
+            <td>{{ baggage.status }}</td>
+            <td>{{ baggage.incidentDetails }}</td>
+            <td class="actions-cell">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="goToBaggageForm(baggage.id)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Editar</span>
+                </button>
+
+                <!-- Botón que abre submenú de estado -->
+                <button mat-menu-item [matMenuTriggerFor]="statusMenu">
+                  <mat-icon>autorenew</mat-icon>
+                  <span>Cambiar estado</span>
+                </button>
+
+                <!-- Submenú de estados -->
+                <mat-menu #statusMenu="matMenu">
+                  <button mat-menu-item *ngFor="let status of statusOptions"
+                          (click)="changeBaggageStatus(baggage, status)">
+                    {{ status }}
+                  </button>
+                </mat-menu>
+
+                <!-- Botón para editar detalles del incidente -->
+                <button mat-menu-item (click)="goToBaggageIncidentDetailsForm(baggage.id!)">
+                  <mat-icon>report_problem</mat-icon>
+                  <span>Editar incidente</span>
+                </button>
+
+                <button *ngIf="baggage.id" mat-menu-item (click)="deleteBaggage(baggage.id)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Eliminar</span>
+                </button>
+              </mat-menu>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </mat-card-content>
+</mat-card>

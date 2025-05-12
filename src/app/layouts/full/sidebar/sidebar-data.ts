@@ -42,6 +42,6 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Baggage',
     iconName: 'luggage',           // Mismo nombre en Tabler
-    route: '/pedidos/listado',
+    route: '/baggages',
   },
 ];

@@ -42,16 +42,24 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
+ 
+
+
+ // Añadir este módulo
+import { MatOptionModule } from '@angular/material/core'; // Añadir este módulo
+
 @NgModule({
   declarations: [],
+  imports: [MatSelectModule, MatOptionModule,MatIconModule],
   exports: [
     MatAutocompleteModule,
+    
     MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatSelectModule,
+    MatSelectModule,  // Agregar aquí
     MatSliderModule,
     MatSlideToggleModule,
     MatMenuModule,
@@ -80,6 +88,7 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    MatOptionModule,  // Agregar aquí
   ],
 })
 export class MaterialModule {}

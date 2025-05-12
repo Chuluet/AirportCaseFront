@@ -15,64 +15,61 @@ import { AlertService } from 'src/app/services/alert/alert.service'
 export class UserListComponent {
   userList: User[] = [];
 
-  constructor(private userService: UserService, private router: Router){
+  constructor(private userService: UserService, private router: Router) {}
 
-  }
-
-  ngOnInit(){
+  ngOnInit() {
     this.getUser();
   }
 
-  changeUserStatus(objUser: User){
+  changeUserStatus(objUser: User) {
     const userId = objUser.id;
     const estado = objUser.state === "Active" ? "Inactive" : "Active";
     this.userService.changeUserStatus(userId, estado).subscribe({
-      next: () =>{
-        alert("Se ha cambiado el estado del usuario");
+      next: () => {
+        alert("User status has been changed");
         this.getUser()
-      }, error: ()=>{
-        alert("Error al cambiar el estado");
+      }, 
+      error: () => {
+        alert("Error changing user status");
       }
     })
   }
 
-  goToUserForm(id?: string){
+  goToUserForm(id?: string) {
     if(id){
         this.router.navigate(['users/user', id])
     }
   }
-  goToCreateUserForm(){
+
+  goToCreateUserForm() {
     this.router.navigate(['users/addUser'])
   }
 
-
-  getUser(){
-    this.userService.getUsers().subscribe(
-      {
-        next: (res) =>{
-          this.userList = res;
-        },
-        error: (err)=>{
-          if(err.status === 403){
-            localStorage.removeItem('AuthToken');
-            // this.router
-          }
+  getUser() {
+    this.userService.getUsers().subscribe({
+      next: (res) => {
+        this.userList = res;
+      },
+      error: (err) => {
+        if(err.status === 403){
+          localStorage.removeItem('AuthToken');
+          // this.router
         }
       }
-    )
+    })
   }
+
   deleteUser(id: string) {
-    console.log('Eliminando usuario con ID:', id);
+    console.log('Deleting user with ID:', id);
     this.userService.deleteUser(id).subscribe({
       next: () => {
-        new AlertService().SuccesAlert("Usuario Eliminado","Usuario eliminado correctamente");
+        new AlertService().SuccesAlert("User Deleted", "User was successfully deleted");
         this.getUser();
       },
       error: (err) => {
-        console.error('Error al eliminar usuario:', err);
-        alert("Ocurrió un error al eliminar el usuario");
+        console.error('Error deleting user:', err);
+        alert("An error occurred while deleting the user");
       }
     });
   }
-  
 }

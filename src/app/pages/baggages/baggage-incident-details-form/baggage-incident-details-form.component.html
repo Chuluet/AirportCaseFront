@@ -2,9 +2,9 @@
   <mat-card-header>
     <div class="header-container">
       <mat-card-title class="m-b-0">
-        {{ editMode ? 'Editar detalles del incidente' : 'Crear detalles del incidente' }}
+        {{ editMode ? 'Edit Incident Details' : 'Create Incident Details' }}
       </mat-card-title>
-      <button mat-flat-button color="primary" (click)="saveIncidentDetails()">Guardar</button>
+      <button mat-flat-button color="primary" (click)="saveIncidentDetails()">Save</button>
     </div>
   </mat-card-header>
 
@@ -12,11 +12,11 @@
     <form [formGroup]="form">
       <div class="row">
 
-        <!-- Detalles del incidente -->
+        <!-- Incident Details -->
         <div class="col-lg-12 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Detalles del incidente</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Incident Details</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <textarea matInput formControlName="incidentDetails" placeholder="Detalles adicionales"></textarea>
+            <textarea matInput formControlName="incidentDetails" placeholder="Additional details"></textarea>
           </mat-form-field>
         </div>
 
@@ -24,4 +24,3 @@
     </form>
   </mat-card-content>
 </mat-card>
-

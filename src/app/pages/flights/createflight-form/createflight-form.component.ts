@@ -66,17 +66,17 @@ export class CreateFlightFormComponent implements OnInit {
         if (flight) {
           this.form.patchValue(flight);
         } else {
-          console.warn('Vuelo no encontrado');
+          console.warn('Flight not found');
         }
       },
-      error: () => console.error('Error al obtener los vuelos')
+      error: () => console.error('Error fetching flights')
     });
   }
 
   guardarFlight(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.alertService.ErrorAlert("Error", "Por favor, completa todos los campos requeridos.");
+      this.alertService.ErrorAlert("Error", "Please fill in all required fields.");
       return;
     }
 
@@ -85,20 +85,20 @@ export class CreateFlightFormComponent implements OnInit {
     if (this.editMode && this.flightId) {
       this.flightService.updateFlight(this.flightId, flightData).subscribe({
         next: () => {
-          this.alertService.SuccesAlert("Éxito", "Vuelo actualizado correctamente").then(result => {
+          this.alertService.SuccesAlert("Success", "Flight updated successfully").then(result => {
             if (result.isConfirmed) this.router.navigate(['/flights']);
           });
         },
-        error: () => console.error('Error al actualizar vuelo')
+        error: () => console.error('Error updating flight')
       });
     } else {
       this.flightService.addFlight(flightData).subscribe({
         next: () => {
-          this.alertService.SuccesAlert("Éxito", "Vuelo creado correctamente").then(result => {
+          this.alertService.SuccesAlert("Success", "Flight created successfully").then(result => {
             if (result.isConfirmed) this.router.navigate(['/flights']);
           });
         },
-        error: () => console.error('Error al crear vuelo')
+        error: () => console.error('Error creating flight')
       });
     }
   }

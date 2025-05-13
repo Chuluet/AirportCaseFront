@@ -7,6 +7,8 @@ import { airportService } from 'src/app/models/airportservice.model';
 import { AlertService } from 'src/app/services/alert/alert.service';
 import { Airportservice } from 'src/app/services/airportService/airport.service';
 
+
+
 @Component({
   selector: 'app-create-airport-service-form',
   standalone: true,
@@ -17,16 +19,21 @@ import { Airportservice } from 'src/app/services/airportService/airport.service'
 export class CreateAirportServiceFormComponent implements OnInit {
   form!: FormGroup;
   loading = false;
+ 
 
   constructor(
     private router: Router,
     private service: Airportservice,
     private fb: FormBuilder,
     private alertService: AlertService
+    
+  
+    
   ) { }
 
   ngOnInit(): void {
     this.initForm();
+   
   }
 
   initForm(): void {
@@ -36,8 +43,10 @@ export class CreateAirportServiceFormComponent implements OnInit {
       description: ['', Validators.required],
       location: ['', Validators.required],
       isActive: [true, Validators.required]
+      
     });
   }
+  
 
   saveService(): void {
     if (this.form.invalid) {

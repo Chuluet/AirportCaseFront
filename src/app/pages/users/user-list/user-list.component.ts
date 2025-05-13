@@ -26,11 +26,11 @@ export class UserListComponent {
     const estado = objUser.state === "Active" ? "Inactive" : "Active";
     this.userService.changeUserStatus(userId, estado).subscribe({
       next: () => {
-        alert("User status has been changed");
+        new AlertService().SuccesAlert("User Status Changed", "User status has been changed");
         this.getUser()
       }, 
       error: () => {
-        alert("Error changing user status");
+        new AlertService().ErrorAlert("Error", "Error changing user status");
       }
     })
   }
@@ -53,22 +53,19 @@ export class UserListComponent {
       error: (err) => {
         if(err.status === 403){
           localStorage.removeItem('AuthToken');
-          // this.router
         }
       }
     })
   }
 
   deleteUser(id: string) {
-    console.log('Deleting user with ID:', id);
     this.userService.deleteUser(id).subscribe({
       next: () => {
         new AlertService().SuccesAlert("User Deleted", "User was successfully deleted");
         this.getUser();
       },
-      error: (err) => {
-        console.error('Error deleting user:', err);
-        alert("An error occurred while deleting the user");
+      error: () => {
+        new AlertService().ErrorAlert("Error", "An error occurred while deleting the user");
       }
     });
   }

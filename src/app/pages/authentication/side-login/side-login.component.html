@@ -3,32 +3,15 @@
     <div class="col-lg-4 d-flex align-items-center">
       <mat-card class="cardWithShadow boxed-auth">
         <mat-card-content class="p-32">
-          <div class="text-center">
-            <a [routerLink]="['/dashboard']">
-              <img src="./assets/images/logos/dark-logo.svg" class="align-middle m-2" alt="logo" />
-            </a>
+          <!-- LOGO E ÍCONO -->
+          <div class="text-center mb-4">
+            <span
+              class="h4 d-block mt-2"
+              style="font-weight: bold; color: #ff9800; font-size: 20px;"
+            >
+              Airport Management System
+            </span>
           </div>
-
-          <div class="row m-t-24 custom-row">
-            <div class="col-12 col-sm-6">
-              <button mat-stroked-button class="w-100">
-                <div class="d-flex align-items-center">
-                  <img src="/assets/images/svgs/google-icon.svg" alt="google" width="16" class="m-r-8" />
-                  <span>Sign in with Google</span>
-                </div>
-              </button>
-            </div>
-            <div class="col-12 col-sm-6">
-              <button mat-stroked-button class="w-100 d-flex align-items-center">
-                <div class="d-flex align-items-center">
-                  <img src="/assets/images/svgs/facebook-icon.svg" alt="facebook" width="40" class="m-r-4" />
-                  Sign in with FB
-                </div>
-              </button>
-            </div>
-          </div>
-
-          <div class="or-border m-t-30">or sign in with</div>
 
           <!-- FORMULARIO REACTIVO -->
           <form class="m-t-30" [formGroup]="form">
@@ -58,11 +41,18 @@
               </a>
             </div>
 
-            <!-- BOTÓN DE ENVÍO REAL -->
+            <!-- BOTÓN DE INICIAR SESIÓN -->
             <button mat-flat-button color="primary" class="w-100" (click)="submit()" [disabled]="form.invalid">
               Sign In
             </button>
           </form>
+
+          <!-- BOTÓN DE REGISTRO -->
+          <div class="text-center m-t-20">
+            <span class="f-s-14">Don't have an account?</span>
+            <button mat-button color="accent" (click)="goToRegister()">Register</button>
+          </div>
+
         </mat-card-content>
       </mat-card>
     </div>

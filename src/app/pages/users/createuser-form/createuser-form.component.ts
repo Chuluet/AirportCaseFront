@@ -69,7 +69,7 @@ export class CreateUserFormComponent implements OnInit {
   guardarUsuarioInfo(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      alert("Please complete all required fields.");
+      this.alertService.ConfirmationAlert("Error", "Please fill all required fields");
       return;
     }
 

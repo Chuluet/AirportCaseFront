@@ -30,11 +30,11 @@ export class FlightListComponent {
 
   this.flightService.changeFlightStatus(flightId, nuevoEstado).subscribe({
     next: () => {
-      alert(`Estado del vuelo actualizado a ${nuevoEstado}`);
+      new AlertService().SuccesAlert("Estado actualizado", `El estado del vuelo ha sido cambiado a ${nuevoEstado}`);
       this.getFlight(); 
     },
     error: () => {
-      alert("Error al cambiar el estado del vuelo");
+      new AlertService().ErrorAlert("Error", "No se pudo cambiar el estado del vuelo");
     }
   });
 }

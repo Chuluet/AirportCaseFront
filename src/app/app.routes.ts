@@ -27,6 +27,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./pages/baggages/baggage.routes').then((m) => m.BaggageRoutes),
       },
+      {
+        path: 'flights',
+        loadChildren: () =>
+          import('./pages/flights/flight.routes').then((m) => m.FlightRoutes),
+      },
     
     ],
   },

@@ -6,7 +6,7 @@ import { MaterialModule } from '../../material.module';
 interface Flight    { flightNo: string; destination: string; time: string; status: string; }
 interface Staff     { name: string; role: string; shift: string; }
 interface Passenger { name: string; flight: string; seat: string; }
-interface Gallery   { title: string; url: string; }
+interface Gallery   { url: string; }
 
 @Component({
   selector: 'app-starter',
@@ -45,9 +45,9 @@ export class StarterComponent implements OnInit {
 
   ngOnInit() {
     this.gallery = [
-      { title: '',      url: 'assets/images/destinations/vuelo.jpg' },
-      { title: '',  url: 'assets/images/destinations/sp.jpg'   },
-      { title: '',        url: 'assets/images/destinations/avion.jpg' },
+      { url: 'assets/images/destinations/vuelo.jpg' },
+      { url: 'assets/images/destinations/sp.jpg'   },
+      { url: 'assets/images/destinations/avion.jpg' },
     ];
   }
 }

@@ -71,7 +71,7 @@ export class PersonnelFormComponent {
   savePersonnelInfo() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      alert("There was an error mapping the data");
+      this.alertService.ErrorAlert("Error", "Please fill all required fields");
       return;
     }
 

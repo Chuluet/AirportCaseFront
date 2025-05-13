@@ -8,23 +8,30 @@ export class AlertService {
 
   constructor() { }
 
-  SuccesAlert(title:string, text: string){
+  SuccesAlert(title: string, text: string) {
     return Swal.fire({
-      icon:"success",
+      icon: "success",
       title: title,
       text: text,
       confirmButtonText: 'Aceptar'
     });
   }
 
-  ConfirmationAlert(title:string, text: string){
+  ConfirmationAlert(title: string, text: string) {
     return Swal.fire({
-      icon:"warning",
-      title:title,
+      icon: "warning",
+      title: title,
       text: text,
       showCancelButton: true,
       confirmButtonText: "Accept",
-      cancelButtonText:"Decline"
+      cancelButtonText: "Decline"
+    })
+  }
+  ErrorAlert(title: string, text: string) {
+    return Swal.fire({
+      icon: "error",
+      title: title,
+      text: text
     })
   }
 }

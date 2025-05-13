@@ -76,7 +76,7 @@ export class CreateFlightFormComponent implements OnInit {
   guardarFlight(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      alert("Por favor, completa todos los campos requeridos.");
+      this.alertService.ErrorAlert("Error", "Por favor, completa todos los campos requeridos.");
       return;
     }
 

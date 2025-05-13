@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from 'src/app/services/auth/auth.service';
-
+import { AlertService } from 'src/app/services/alert/alert.service';
 @Component({
   selector: 'app-side-login',
   imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, CommonModule],
@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class AppSideLoginComponent {
 
-  constructor( private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) { }
 
   form = new FormGroup({
     uname: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -25,17 +25,19 @@ export class AppSideLoginComponent {
   get f() {
     return this.form.controls;
   }
-
+  goToRegister() {
+   this.router.navigate(['authentication/register'])
+  }
   submit() {
     const { uname, password } = this.form.value;
     this.authService.authenticate(uname || '', password || '').subscribe({
-      next:(res)=>{
+      next: (res) => {
         localStorage.setItem("AuthToken", res.token);
         this.router.navigate(['/']);
-      }, 
-      error:(err)=>{
+      },
+      error: (err) => {
         console.log(err);
-        alert("Error al iniciar sesión")
+        new AlertService().ErrorAlert("Error", "Invalid credentials");
       }
 
     })

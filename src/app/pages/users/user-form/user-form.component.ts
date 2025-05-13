@@ -65,7 +65,7 @@ export class UserFormComponent {
   guardarUsuarioInfo() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      alert("There was an error mapping the data");
+      this.alertService.ConfirmationAlert("Error", "Please fill all required fields");
       return;
     }
 

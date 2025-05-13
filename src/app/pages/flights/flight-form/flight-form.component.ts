@@ -60,7 +60,7 @@ export class FlightFormComponent {
   guardarFlight() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      alert("Hubo un error al validar los datos del formulario");
+      this.alertService.ErrorAlert("Error", "Por favor, complete todos los campos obligatorios");
       return;
     }
 

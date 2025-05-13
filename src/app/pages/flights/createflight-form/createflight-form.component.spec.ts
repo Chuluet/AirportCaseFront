@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateflightFormComponent } from './createflight-form.component';
+import { CreateFlightFormComponent } from './createflight-form.component';
 
 describe('CreateflightFormComponent', () => {
-  let component: CreateflightFormComponent;
-  let fixture: ComponentFixture<CreateflightFormComponent>;
+  let component: CreateFlightFormComponent;
+  let fixture: ComponentFixture<CreateFlightFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateflightFormComponent]
+      imports: [CreateFlightFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CreateflightFormComponent);
+    fixture = TestBed.createComponent(CreateFlightFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

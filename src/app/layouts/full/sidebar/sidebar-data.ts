@@ -35,11 +35,6 @@ export const navItems: NavItem[] = [
     route: '/flights',
   },
   {
-    displayName: 'Flight Detail',
-    iconName: 'route',             // Icono para rutas de vuelo
-    route: '/pedidos/listado',
-  },
-  {
     displayName: 'Baggage',
     iconName: 'luggage',           // Mismo nombre en Tabler
     route: '/baggages',

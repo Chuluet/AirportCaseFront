@@ -1,7 +1,7 @@
 <mat-card class="cardWithShadow rounded-card">
   <mat-card-content>
 
-    <!-- Encabezado -->
+   
     <div class="header">
       <div>
         <mat-card-title>Vuelos</mat-card-title>
@@ -14,7 +14,7 @@
 
     <hr />
 
-    <!-- Tabla -->
+  
     <div class="table-responsive">
       <table class="user-table">
         <thead>
@@ -52,13 +52,13 @@
                   <span>Editar</span>
                 </button>
 
-                <!-- Botón que abre submenú de estado -->
+               
                 <button mat-menu-item [matMenuTriggerFor]="statusMenu">
                   <mat-icon>autorenew</mat-icon>
                   <span>Cambiar estado</span>
                 </button>
 
-                <!-- Submenú de estados -->
+               
                 <mat-menu #statusMenu="matMenu">
                   <button mat-menu-item *ngFor="let status of statusOptions"
                           (click)="changeFlightStatus(flight, status)">

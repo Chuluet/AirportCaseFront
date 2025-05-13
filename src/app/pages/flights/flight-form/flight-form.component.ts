@@ -12,7 +12,7 @@ import { Flight } from 'src/app/models/flight.model';
   standalone: true,
   imports: [MaterialModule, ReactiveFormsModule, CommonModule],
   templateUrl: './flight-form.component.html',
-  styleUrl: './flight-form.component.scss'
+  styleUrls: ['./flight-form.component.scss']
 })
 export class FlightFormComponent {
   form!: FormGroup;
@@ -35,8 +35,7 @@ export class FlightFormComponent {
       if (id) {
         this.flightId = id;
         this.editMode = true;
-
-        
+        this.getFlight(id);  // Fetch the flight details for editing
       }
     });
   }
@@ -57,7 +56,23 @@ export class FlightFormComponent {
     });
   }
 
-  guardarFlight() {
+  getFlight(id: string): void {
+    this.flightService.getFlights().subscribe({
+      next: (flights: Flight[]) => {
+        const flight = flights.find(f => f.id === id);
+        if (flight) {
+          this.form.patchValue(flight);
+        } else {
+          console.warn('Flight not found');
+        }
+      },
+      error: () => {
+        console.error('Error fetching flight details');
+      }
+    });
+  }
+
+  guardarFlight(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.alertService.ErrorAlert("Error", "Por favor, complete todos los campos obligatorios");

@@ -6,6 +6,10 @@ import { MaterialModule } from 'src/app/material.module';
 import { Baggage } from 'src/app/models/baggage.model';
 import { AlertService } from 'src/app/services/alert/alert.service';
 import { BaggageService } from 'src/app/services/baggage/baggage.service';
+import { Passenger } from 'src/app/models/passenger.model';
+import { Flight } from 'src/app/models/flight.model';
+import { PassengerService } from 'src/app/services/passenger/passenger.service';
+import { FlightService } from 'src/app/services/flight/flight.service';
 
 @Component({
   selector: 'app-baggage-form',
@@ -18,18 +22,22 @@ export class BaggageFormComponent {
   form!: FormGroup;
   editMode = false;
   baggageId!: string;
+  passengers: Passenger[] = [];
+  flights: Flight[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private baggageService: BaggageService,
     private fb: FormBuilder,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private flightService: FlightService,
+    private passengerService: PassengerService
   ) {}
 
   initForm(): void {
     this.form = this.fb.group({
-      passenger: ['', Validators.required],
+      passengerFk: ['', Validators.required],
       tagNumber: ['', Validators.required],
       weight: [null, [Validators.required, Validators.min(0)]],
       dimensions: [''],
@@ -38,7 +46,11 @@ export class BaggageFormComponent {
   }
 
   ngOnInit(): void {
+    this.loadFlights();
+    this.loadPassengers();
     this.initForm();
+    
+  
 
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
@@ -49,6 +61,19 @@ export class BaggageFormComponent {
       }
     });
   }
+  loadPassengers(): void {
+      this.passengerService.getPassenger().subscribe({
+        next: (data: Passenger[]) => this.passengers = data,
+        error: () => console.error('Error al cargar pasajeros')
+      });
+    }
+    
+    loadFlights(): void {
+      this.flightService.getFlights().subscribe({
+        next: (data: Flight[]) => this.flights = data,
+        error: () => console.error('Error al cargar vuelos')
+      });
+    }
 
 
   guardarBaggageInfo() {

@@ -1,34 +1,32 @@
 <mat-card class="cardWithShadow rounded-card">
   <mat-card-content>
 
-   
     <div class="header">
       <div>
-        <mat-card-title>Vuelos</mat-card-title>
-        <mat-card-subtitle>Listado</mat-card-subtitle>
+        <mat-card-title>Flights</mat-card-title>
+        <mat-card-subtitle>List</mat-card-subtitle>
       </div>
       <button mat-flat-button (click)="goToCreateFlightForm()" color="primary">
-        Registrar nuevo vuelo
+        Register new flight
       </button>
     </div>
 
     <hr />
 
-  
     <div class="table-responsive">
       <table class="user-table">
         <thead>
           <tr>
             <th hidden>ID</th>
-            <th>Número de vuelo</th>
-            <th>Aerolínea</th>
-            <th>Aeropuerto salida</th>
-            <th>Aeropuerto llegada</th>
-            <th>Hora salida</th>
-            <th>Hora llegada</th>
-            <th>Ruta</th>
-            <th>Estado</th>
-            <th class="actions-header">Acciones</th>
+            <th>Flight Number</th>
+            <th>Airline</th>
+            <th>Departure Airport</th>
+            <th>Arrival Airport</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+            <th>Route</th>
+            <th>Status</th>
+            <th class="actions-header">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -49,16 +47,14 @@
               <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="goToFlightForm(flight.id)">
                   <mat-icon>edit</mat-icon>
-                  <span>Editar</span>
+                  <span>Edit</span>
                 </button>
 
-               
                 <button mat-menu-item [matMenuTriggerFor]="statusMenu">
                   <mat-icon>autorenew</mat-icon>
-                  <span>Cambiar estado</span>
+                  <span>Change Status</span>
                 </button>
 
-               
                 <mat-menu #statusMenu="matMenu">
                   <button mat-menu-item *ngFor="let status of statusOptions"
                           (click)="changeFlightStatus(flight, status)">
@@ -68,7 +64,7 @@
 
                 <button *ngIf="flight.id" mat-menu-item (click)="deleteFlight(flight.id)">
                   <mat-icon>delete</mat-icon>
-                  <span>Eliminar</span>
+                  <span>Delete</span>
                 </button>
               </mat-menu>
             </td>

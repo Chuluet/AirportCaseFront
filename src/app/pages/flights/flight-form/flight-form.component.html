@@ -2,9 +2,9 @@
   <mat-card-header>
     <div class="header-container">
       <mat-card-title class="m-b-0">
-        {{ editMode ? 'Editar vuelo' : 'Crear vuelo' }}
+        {{ editMode ? 'Edit flight' : 'Create flight' }}
       </mat-card-title>
-      <button mat-flat-button color="primary" (click)="guardarFlight()">Guardar</button>
+      <button mat-flat-button color="primary" (click)="guardarFlight()">Save</button>
     </div>
   </mat-card-header>
 
@@ -12,98 +12,87 @@
     <form [formGroup]="form">
       <div class="row">
 
-        
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Número de vuelo</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Flight number</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="flightNumber" placeholder="Ej. UX109" />
+            <input matInput formControlName="flightNumber" placeholder="e.g. UX109" />
           </mat-form-field>
         </div>
 
-      
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Aerolínea</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Airline</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="airline" placeholder="Ej. Iberia, Air France..." />
+            <input matInput formControlName="airline" placeholder="e.g. Iberia, Air France..." />
           </mat-form-field>
         </div>
 
-      
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Aeropuerto de salida</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Departure airport</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="departureAirport" placeholder="Ej. MAD - Madrid Barajas" />
+            <input matInput formControlName="departureAirport" placeholder="e.g. MAD - Madrid Barajas" />
           </mat-form-field>
         </div>
 
-       
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Aeropuerto de llegada</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Arrival airport</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="arrivalAirport" placeholder="Ej. CDG - París Charles de Gaulle" />
+            <input matInput formControlName="arrivalAirport" placeholder="e.g. CDG - Paris Charles de Gaulle" />
           </mat-form-field>
         </div>
 
-     
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Hora de salida</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Departure time</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
             <input type="datetime-local" matInput formControlName="departureTime" />
           </mat-form-field>
         </div>
 
-       
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Hora de llegada</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Arrival time</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
             <input type="datetime-local" matInput formControlName="arrivalTime" />
           </mat-form-field>
         </div>
 
-     
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Ruta</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Route</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="route" placeholder="Ej. MAD-CDG" />
+            <input matInput formControlName="route" placeholder="e.g. MAD-CDG" />
           </mat-form-field>
         </div>
 
-       
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Estado</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Status</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
             <mat-select formControlName="status">
-              <mat-option value="Scheduled">Programado</mat-option>
-              <mat-option value="Boarding">Embarcando</mat-option>
-              <mat-option value="Departed">Despegado</mat-option>
-              <mat-option value="Delayed">Retrasado</mat-option>
-              <mat-option value="Canceled">Cancelado</mat-option>
-              <mat-option value="Arrived">Llegado</mat-option>
+              <mat-option value="Scheduled">Scheduled</mat-option>
+              <mat-option value="Boarding">Boarding</mat-option>
+              <mat-option value="Departed">Departed</mat-option>
+              <mat-option value="Delayed">Delayed</mat-option>
+              <mat-option value="Canceled">Canceled</mat-option>
+              <mat-option value="Arrived">Arrived</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
 
-        
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Puerta de embarque</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Boarding gate</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="boardingGate" placeholder="Ej. A23" />
+            <input matInput formControlName="boardingGate" placeholder="e.g. A23" />
           </mat-form-field>
         </div>
 
-        
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Tipo de avión</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Aircraft type</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="aircraftType" placeholder="Ej. Airbus A320" />
+            <input matInput formControlName="aircraftType" placeholder="e.g. Airbus A320" />
           </mat-form-field>
         </div>
 
-       
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Recogida de equipaje</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Baggage claim</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="baggageClaim" placeholder="Ej. Cinta 7" />
+            <input matInput formControlName="baggageClaim" placeholder="e.g. Belt 7" />
           </mat-form-field>
         </div>
 

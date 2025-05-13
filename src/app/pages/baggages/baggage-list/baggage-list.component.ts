@@ -14,87 +14,87 @@ import { AlertService } from 'src/app/services/alert/alert.service'
 })
 export class BaggageListComponent {  
   baggageList: Baggage[] = [];  
-  constructor(private baggageService: BaggageService, private router: Router){}
 
-  ngOnInit(){
+  constructor(
+    private baggageService: BaggageService, 
+    private router: Router,
+    private alertService: AlertService
+  ) {}
+
+  ngOnInit() {
     this.getBaggage();
   }
 
-
   statusOptions: string[] = ["Checked-in", "Arrived", "Lost", "In transit", "Delayed"];
 
-  changeBaggageStatus(baggage: Baggage, nuevoEstado: string) {
-  const baggageId = baggage.id;
+  changeBaggageStatus(baggage: Baggage, newStatus: string) {
+    const baggageId = baggage.id;
 
-  this.baggageService.changeBaggageStatus(baggageId, nuevoEstado).subscribe({
-    next: () => {
-      alert(`Estado del equipaje actualizado a ${nuevoEstado}`);
-      this.getBaggage(); 
-    },
-    error: () => {
-      alert("Error al cambiar el estado del equipaje");
-    }
-  });
-}
-changeBaggageIncidentDetails(baggage: Baggage, nuevoDetalles: string) {
-  const baggageId = baggage.id;
+    this.baggageService.changeBaggageStatus(baggageId, newStatus).subscribe({
+      next: () => {
+        alert(`Baggage status updated to ${newStatus}`);
+        this.getBaggage(); 
+      },
+      error: () => {
+        alert("Error updating baggage status");
+      }
+    });
+  }
 
-  this.baggageService.changeBaggageIncidentDetails(baggageId, nuevoDetalles).subscribe({
-    next: () => {
-      alert(`Incidentes del equipaje actualizado a ${nuevoDetalles}`);
-      this.getBaggage(); 
-    },
-    error: () => {
-      alert("Error al cambiar los Incidentes del equipaje");
-    }
-  });
-}
+  changeBaggageIncidentDetails(baggage: Baggage, newDetails: string) {
+    const baggageId = baggage.id;
 
- 
-  goToBaggageForm(id?: string){
-    if(id){
-        this.router.navigate(['baggages/baggage', id]);  
+    this.baggageService.changeBaggageIncidentDetails(baggageId, newDetails).subscribe({
+      next: () => {
+        alert(`Baggage incident details updated to ${newDetails}`);
+        this.getBaggage(); 
+      },
+      error: () => {
+        alert("Error updating baggage incident details");
+      }
+    });
+  }
+
+  goToBaggageForm(id?: string) {
+    if (id) {
+      this.router.navigate(['baggages/baggage', id]);  
     }
   }
 
-  
-  goToCreateBaggageForm(){
+  goToCreateBaggageForm() {
     this.router.navigate(['baggages/addBaggage']); 
   }
+
   goToBaggageIncidentDetailsForm(id: string): void {
-  if(id){
-        this.router.navigate(['baggages/changeIncidentDetails', id]);  
+    if (id) {
+      this.router.navigate(['baggages/changeIncidentDetails', id]);  
     }
-}
-
-
-  getBaggage(){
-    this.baggageService.getBaggage().subscribe(
-      {
-        next: (res) => {
-          this.baggageList = res;
-        },
-        error: (err) => {
-          if(err.status === 403){
-            localStorage.removeItem('AuthToken');
-         
-          }
-        }
-      }
-    );
   }
 
-  
+  getBaggage() {
+    this.baggageService.getBaggage().subscribe({
+      next: (res) => {
+        this.baggageList = res;
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          localStorage.removeItem('AuthToken');
+          // You might want to redirect to login here
+        }
+      }
+    });
+  }
+
   deleteBaggage(id: string) {
-    console.log('Eliminando equipaje con ID:', id);
+    console.log('Deleting baggage with ID:', id);
     this.baggageService.deleteBaggage(id).subscribe({
       next: () => {
-        new AlertService().SuccesAlert("Equipaje Eliminado", "Equipaje eliminado correctamente");
+        this.alertService.SuccesAlert("Baggage Deleted", "Baggage deleted successfully");
         this.getBaggage();
       },
       error: (err) => {
-        console.error('Error al eliminar equipaje:', err);
-        alert("Ocurrió un error al eliminar el equipaje");
+        console.error('Error deleting baggage:', err);
+        alert("An error occurred while deleting the baggage");
       }
     });
   }

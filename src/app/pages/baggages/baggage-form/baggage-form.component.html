@@ -2,9 +2,9 @@
   <mat-card-header>
     <div class="header-container">
       <mat-card-title class="m-b-0">
-        {{ editMode ? 'Editar equipaje' : 'Crear equipaje' }}
+        {{ editMode ? 'Edit baggage' : 'Create baggage' }}
       </mat-card-title>
-      <button mat-flat-button color="primary" (click)="guardarBaggageInfo()">Guardar</button>
+      <button mat-flat-button color="primary" (click)="guardarBaggageInfo()">Save</button>
     </div>
   </mat-card-header>
 
@@ -12,73 +12,83 @@
     <form [formGroup]="form">
       <div class="row">
 
-        <!-- Pasajero -->
+        <!-- Passenger -->
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">ID Pasajero</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Passenger ID</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="passengerFk" placeholder="ID del pasajero" />
+            <mat-select formControlName="passengerFk" placeholder="Select a passenger">
+              <mat-option *ngFor="let passenger of passengers" [value]="passenger.id">
+                {{ passenger.name }} ({{ passenger.passportId }})
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+
+        <!-- Flight -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Flight ID</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <mat-select formControlName="flightFk" placeholder="Select a flight">
+              <mat-option *ngFor="let flight of flights" [value]="flight.id">
+                {{ flight.flightNumber }} - {{ flight.route }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+
+        <!-- Tag Number -->
+        <div class="col-lg-6 m-b-16">
+          <mat-label class="f-w-600 m-b-8 d-block">Tag Number</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput formControlName="tagNumber" placeholder="Tag number" />
           </mat-form-field>
         </div>
 
-        <!-- Vuelo -->
+        <!-- Weight -->
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">ID Vuelo</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Weight (kg)</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="flightFk" placeholder="ID del vuelo" />
+            <input type="number" matInput formControlName="weight" placeholder="Baggage weight" />
           </mat-form-field>
         </div>
 
-        <!-- Número de etiqueta -->
+        <!-- Dimensions -->
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Número de etiqueta</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Dimensions</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="tagNumber" placeholder="Número de etiqueta" />
+            <input matInput formControlName="dimensions" placeholder="E.g. 50x40x20cm" />
           </mat-form-field>
         </div>
 
-        <!-- Peso -->
+        <!-- Check-In Location -->
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Peso (kg)</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Check-In Location</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input type="number" matInput formControlName="weight" placeholder="Peso del equipaje" />
+            <input matInput formControlName="checkInLocation" placeholder="Check-in location" />
           </mat-form-field>
         </div>
 
-        <!-- Dimensiones -->
+        <!-- Status -->
         <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Dimensiones</mat-label>
-          <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="dimensions" placeholder="Ej. 50x40x20cm" />
-          </mat-form-field>
-        </div>
-
-        <!-- Ubicación Check-In -->
-        <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Check-In</mat-label>
-          <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput formControlName="checkInLocation" placeholder="Ubicación de check-in" />
-          </mat-form-field>
-        </div>
-
-        <!-- Estado -->
-        <div class="col-lg-6 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Estado</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Status</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
             <mat-select formControlName="status">
-              <mat-option value="Checked-in">Registrado</mat-option>
-              <mat-option value="Arrived">Llegó</mat-option>
-              <mat-option value="Lost">Perdido</mat-option>
-              <mat-option value="In transit">En tránsito</mat-option>
-              <mat-option value="Delayed">Retrasado</mat-option>
+              <mat-option value="Checked-in">Checked-in</mat-option>
+              <mat-option value="Arrived">Arrived</mat-option>
+              <mat-option value="Lost">Lost</mat-option>
+              <mat-option value="In transit">In transit</mat-option>
+              <mat-option value="Delayed">Delayed</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
 
-        <!-- Detalles del incidente -->
+        <!-- Incident Details -->
         <div class="col-lg-12 m-b-16">
-          <mat-label class="f-w-600 m-b-8 d-block">Detalles del incidente</mat-label>
+          <mat-label class="f-w-600 m-b-8 d-block">Incident Details</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <textarea matInput formControlName="incidentDetails" placeholder="Detalles adicionales"></textarea>
+            <textarea matInput formControlName="incidentDetails" placeholder="Additional details"></textarea>
           </mat-form-field>
         </div>
       </div>

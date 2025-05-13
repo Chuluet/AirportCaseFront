@@ -32,7 +32,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Flight',
     iconName: 'plane',             // Icono de avión
-    route: '/pedidos/listado',
+    route: '/flights',
   },
   {
     displayName: 'Flight Detail',

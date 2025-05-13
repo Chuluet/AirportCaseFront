@@ -1,0 +1,81 @@
+<mat-card class="cardWithShadow rounded-card">
+  <mat-card-content>
+
+    <!-- Encabezado -->
+    <div class="header">
+      <div>
+        <mat-card-title>Vuelos</mat-card-title>
+        <mat-card-subtitle>Listado</mat-card-subtitle>
+      </div>
+      <button mat-flat-button (click)="goToCreateFlightForm()" color="primary">
+        Registrar nuevo vuelo
+      </button>
+    </div>
+
+    <hr />
+
+    <!-- Tabla -->
+    <div class="table-responsive">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th hidden>ID</th>
+            <th>Número de vuelo</th>
+            <th>Aerolínea</th>
+            <th>Aeropuerto salida</th>
+            <th>Aeropuerto llegada</th>
+            <th>Hora salida</th>
+            <th>Hora llegada</th>
+            <th>Ruta</th>
+            <th>Estado</th>
+            <th class="actions-header">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flight of flightList">
+            <td hidden>{{ flight.id }}</td>
+            <td>{{ flight.flightNumber }}</td>
+            <td>{{ flight.airline }}</td>
+            <td>{{ flight.departureAirport }}</td>
+            <td>{{ flight.arrivalAirport }}</td>
+            <td>{{ flight.departureTime }}</td>
+            <td>{{ flight.arrivalTime }}</td>
+            <td>{{ flight.route }}</td>
+            <td>{{ flight.status }}</td>
+            <td class="actions-cell">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="goToFlightForm(flight.id)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Editar</span>
+                </button>
+
+                <!-- Botón que abre submenú de estado -->
+                <button mat-menu-item [matMenuTriggerFor]="statusMenu">
+                  <mat-icon>autorenew</mat-icon>
+                  <span>Cambiar estado</span>
+                </button>
+
+                <!-- Submenú de estados -->
+                <mat-menu #statusMenu="matMenu">
+                  <button mat-menu-item *ngFor="let status of statusOptions"
+                          (click)="changeFlightStatus(flight, status)">
+                    {{ status }}
+                  </button>
+                </mat-menu>
+
+                <button *ngIf="flight.id" mat-menu-item (click)="deleteFlight(flight.id)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Eliminar</span>
+                </button>
+              </mat-menu>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </mat-card-content>
+</mat-card>

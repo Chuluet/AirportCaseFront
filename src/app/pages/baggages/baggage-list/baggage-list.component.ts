@@ -2,26 +2,25 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
-import { Baggage } from 'src/app/models/baggage.model';  // Cambié 'User' por 'Baggage'
-import { BaggageService } from 'src/app/services/baggage/baggage.service';  // Cambié 'UserService' por 'BaggageService'
+import { Baggage } from 'src/app/models/baggage.model';  
+import { BaggageService } from 'src/app/services/baggage/baggage.service';  
 import { AlertService } from 'src/app/services/alert/alert.service'
 
 @Component({
-  selector: 'app-baggage-list',  // Cambié el selector a 'app-baggage-list'
+  selector: 'app-baggage-list',  
   imports: [MaterialModule, CommonModule],
-  templateUrl: './baggage-list.component.html',  // Cambié el nombre del archivo de 'user-list' a 'baggage-list'
-  styleUrl: './baggage-list.component.scss'  // Cambié el nombre del archivo de 'user-list' a 'baggage-list'
+  templateUrl: './baggage-list.component.html',  
+  styleUrl: './baggage-list.component.scss' 
 })
-export class BaggageListComponent {  // Cambié el nombre de la clase a BaggageListComponent
-  baggageList: Baggage[] = [];  // Cambié 'userList' a 'baggageList'
-
+export class BaggageListComponent {  
+  baggageList: Baggage[] = [];  
   constructor(private baggageService: BaggageService, private router: Router){}
 
   ngOnInit(){
     this.getBaggage();
   }
 
-  // Método para cambiar el estado del equipaje (ejemplo: 'In Progress' a 'Completed')
+
   statusOptions: string[] = ["Checked-in", "Arrived", "Lost", "In transit", "Delayed"];
 
   changeBaggageStatus(baggage: Baggage, nuevoEstado: string) {
@@ -30,7 +29,7 @@ export class BaggageListComponent {  // Cambié el nombre de la clase a BaggageL
   this.baggageService.changeBaggageStatus(baggageId, nuevoEstado).subscribe({
     next: () => {
       alert(`Estado del equipaje actualizado a ${nuevoEstado}`);
-      this.getBaggage(); // refresca la lista
+      this.getBaggage(); 
     },
     error: () => {
       alert("Error al cambiar el estado del equipaje");
@@ -43,7 +42,7 @@ changeBaggageIncidentDetails(baggage: Baggage, nuevoDetalles: string) {
   this.baggageService.changeBaggageIncidentDetails(baggageId, nuevoDetalles).subscribe({
     next: () => {
       alert(`Incidentes del equipaje actualizado a ${nuevoDetalles}`);
-      this.getBaggage(); // refresca la lista
+      this.getBaggage(); 
     },
     error: () => {
       alert("Error al cambiar los Incidentes del equipaje");
@@ -51,24 +50,24 @@ changeBaggageIncidentDetails(baggage: Baggage, nuevoDetalles: string) {
   });
 }
 
-  // Método para navegar al formulario de detalles de equipaje
+ 
   goToBaggageForm(id?: string){
     if(id){
-        this.router.navigate(['baggages/baggage', id]);  // Cambié la ruta de 'users/user' a 'baggages/baggage'
+        this.router.navigate(['baggages/baggage', id]);  
     }
   }
 
-  // Método para navegar al formulario de creación de equipaje
+  
   goToCreateBaggageForm(){
-    this.router.navigate(['baggages/addBaggage']);  // Cambié la ruta de 'users/addUser' a 'baggages/addBaggage'
+    this.router.navigate(['baggages/addBaggage']); 
   }
   goToBaggageIncidentDetailsForm(id: string): void {
   if(id){
-        this.router.navigate(['baggages/changeIncidentDetails', id]);  // Cambié la ruta de 'users/user' a 'baggages/baggage'
+        this.router.navigate(['baggages/changeIncidentDetails', id]);  
     }
 }
 
-  // Método para obtener la lista de equipajes
+
   getBaggage(){
     this.baggageService.getBaggage().subscribe(
       {
@@ -78,14 +77,14 @@ changeBaggageIncidentDetails(baggage: Baggage, nuevoDetalles: string) {
         error: (err) => {
           if(err.status === 403){
             localStorage.removeItem('AuthToken');
-            // this.router
+         
           }
         }
       }
     );
   }
 
-  // Método para eliminar un equipaje
+  
   deleteBaggage(id: string) {
     console.log('Eliminando equipaje con ID:', id);
     this.baggageService.deleteBaggage(id).subscribe({

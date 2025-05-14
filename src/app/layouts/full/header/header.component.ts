@@ -30,6 +30,6 @@ export class HeaderComponent {
 
   logOut():void{
     localStorage.removeItem('AuthToken');
-    sessionStorage.clear(); 
+    
   }
 }
